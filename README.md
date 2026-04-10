@@ -20,18 +20,32 @@ This project demonstrates how to perform network scanning using Nmap (Network Ma
 
 🚀 Steps Performed
 
-1. Host Discovery
+## 🔍 Nmap Scan Analysis
 
-Used ping scan to identify active devices:
+### 📌 Scan 1: Localhost (127.0.0.1)
 
-nmap -sn 192.168.1.0/24
+- Command used: `nmap -T4 -A -v 127.0.0.1`
+- Open ports discovered:
+  - 135 (RPC)
+  - 445 (SMB)
+  - 8000, 8089, 8194 (Web/Custom services)
 
-2. Port Scanning
+**Insight:**
+These ports indicate active local services. Port 445 (SMB) is particularly important as it is often targeted in lateral movement attacks.
 
-Scanned a target IP for open ports:
+![Localhost Scan](local-host.png)
 
-nmap 192.168.1.1
+---
 
+### 📌 Scan 2: Router (192.168.1.1)
+
+- Command used: `nmap -T4 -A -v 192.168.1.1`
+- Result: Host appears down
+
+**Insight:**
+The router likely blocks ICMP (ping) requests. This is common in secured networks.
+
+![Router Scan](scan-router.png)
 3. Service Detection
 
 Detected services running on open ports:
